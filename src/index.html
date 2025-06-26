@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello World Project: Everest</title>
+    <link rel="stylesheet" href="mainstyle.css">
+</head>
+<body>
+    <div class="title">
+        <h1>Everesting Calculator</h1>
+    </div>
+    
+    <div class="mainBody">
+        <div class="leftSide sharedSide">
+            <div class="mainEntryPanel">
+                <div class="rideInfoEntry">
+                    <div class="entryDiv" tabindex="0">
+                        <div class="entryTextDiv" id="climbingDistanceText">Distance of climb (km)</div>
+                        <input type="number" id="climbingDistance" placeholder="km">
+                    </div>
+                    <div class="entryDiv" tabindex="0">
+                        <div class="entryTextDiv" id="elevationText">Elevation gain (m)</div>
+                        <input type="number" id="elevation" placeholder="m">
+                    </div>
+                    <div class="entryDiv" tabindex="0">
+                        <div class="entryTextDiv" id="totalWeightText"">Total weight (Kg)</div>
+                        <input type="number" id="totalWeight" placeholder="Kg">
+                    </div>
+                    <div class="entryDiv" tabindex="0">
+                        <div class="entryTextDiv" id="climbingSpeedText"">Speed of climbing (km/h)</div>
+                        <input type="number" id="climbingSpeed" placeholder="km/h">
+                    </div>
+                    <div class="entryDiv" tabindex="0">
+                        <div class="entryTextDiv" id="descentSpeedText"">Speed of descending (km/h)</div>
+                        <input type="number" id="descentSpeed" placeholder="km/h">
+                    </div>
+                    <div class="entryDiv" tabindex="0">
+                        <div class="entryTextDiv" id="restStopTimeText"">Duration of stops</div>
+                        <input type="range" id="restStopTime" min="0" max="600" value="0" step="1">
+                        <div class="entryTextDiv" id="restStopTimeDisplayText">00:00</div>
+                    </div>
+                    <div class="entryDiv" tabindex="0">
+                        <div class="entryTextDiv" id="totalRestStopsText">Total number of rest stops</div>
+                        <input type="number" id="totalRestStops">
+                    </div>
+                </div>
+            </div>
+            <button type="button" id="calculateDataButton">Calculate</button>
+        </div>
+        <div class="rightSide sharedSide">
+            <div class="calculatedDataBox"><h2 id="totalWattsText">164w</h2></div>
+            <div class="calculatedDataBox"><h2 id="totalDistanceText">423km</h2></div>
+            <div class="calculatedDataBox"><h2 id="lapDistanceText">4.03km</h2></div>
+        </div>
+    </div>
+    
+
+    <script type="module" src="../dist/index.js"></script>
+</body>
+</html>

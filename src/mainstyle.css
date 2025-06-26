@@ -1,0 +1,175 @@
+:root {
+    /* Colors */
+    --black: #202020;
+    --darkGrey: #505050;
+    --white: #edede9;
+    --grey: #dededd;
+    --darkBlue: #003049;
+    --lightBlue: #669bbc;
+    --red: #c1121f;
+    --yellow: #ffb703;  
+
+    /* Constants */
+    --fastTransitionTime: 0.1s;
+    --slowTransitionTime: 0.5s;
+}
+
+/* import font */
+@font-face {
+  font-family: 'Press Start 2P';
+  src: url('assets/PressStart2P-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: "simpleTihi";
+    src: url("assets/NotoSans.ttf") format("truetype");
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    background-color: var(--white);
+
+    font-family: "Press Start 2P";
+    color: var(--black);
+}
+
+h1 {
+    color: var(--red);
+}
+
+/*
+input[type="number"] {
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0px 4px 4px 0px var(--red);
+    padding: 12px;
+    margin: 12px;
+
+    background-color: var(--white);
+    transition: all var(--slowTransitionTime) ease;
+}
+    */
+
+input[type="number"] {
+    border: none;
+    background-color: var(--white);
+
+    font-family: "Press Start 2P";
+    color: var(--darkGrey);
+    width: 100%;
+}
+
+input[type="number"]:focus {
+    outline: none;
+    box-shadow: 0px 4px 0px 0px var(--yellow);
+    
+}
+
+/* Disable spinners in all number inputs */
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+input[type="range"]:focus {
+    outline: none;
+}
+
+.entryTextDiv {
+    font-size: 82%;
+    font-weight: 1000;
+}
+
+.entryDiv {
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0px 4px 4px 0px var(--red);
+    padding: 12px;
+    margin: 12px;
+
+    background-color: var(--white);
+    transition: all var(--slowTransitionTime) ease;
+    width: 64%;
+}
+
+.entryDiv:active {
+    box-shadow: 0px 4px 4px 0px var(--yellow);
+}
+
+.entryDiv:focus {
+    outline: none;
+    box-shadow: 0px 4px 4px 0px var(--yellow);
+}
+
+button {
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0px 4px 4px 0px var(--red);
+    padding: 12px;
+    margin: 12px;
+
+    background-color: var(--white);
+    transition: all var(--fastTransitionTime) ease;
+
+    font-family: "Press Start 2P";
+    color: var(--black);
+}
+
+button:hover {
+    box-shadow: 0px 4px 4px 0px var(--darkBlue);
+}
+
+button:active {
+    transform: scale(0.95);
+    box-shadow: 0px 4px 4px 0px var(--yellow);
+}
+
+.title {
+    display: flex;
+    justify-content: center;
+}
+
+.mainBody {
+    display: flex;
+    flex-direction: row;
+}
+
+.sharedSide {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+    width: 50vw;
+}
+
+.rideInfoEntry {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+    width: 50vw;
+}
+
+.leftSide {
+
+}
+
+.rightSide {
+    
+}
+
+.calculatedDataBox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 12px;
+
+    background-color: var(--grey);
+    width: 75%;
+    border-radius: 12px;
+}
