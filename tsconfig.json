@@ -7,6 +7,13 @@
     "rootDir": ".",
     "strict": true,
     "esModuleInterop": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "noImplicitAny": true,            // Error if 'any' is inferred
+    "strictNullChecks": true,         // Forces null/undefined checks
+    "strictFunctionTypes": true,      // Strict checking of function types
+    "strictBindCallApply": true,      // Strict checking of bind/call/apply
+    "strictPropertyInitialization": true, // Forces class properties initialization
+    "noImplicitThis": true,           // Error if 'this' is implicitly 'any'
+    "alwaysStrict": true              // Parses in strict mode
   }
 }
