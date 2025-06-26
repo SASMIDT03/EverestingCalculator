@@ -17,13 +17,9 @@
 /* import font */
 @font-face {
   font-family: 'Press Start 2P';
-  src: url('assets/PressStart2P-Regular.ttf') format('truetype');
+  src: url('../assets/PressStart2P-Regular.ttf') format('truetype');
 }
 
-@font-face {
-    font-family: "simpleTihi";
-    src: url("assets/NotoSans.ttf") format("truetype");
-}
 
 body {
     display: flex;
