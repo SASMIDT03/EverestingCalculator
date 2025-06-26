@@ -5,7 +5,7 @@ let window
 function createWindow() {
     window = new BrowserWindow({
         width: 1000,
-        height: 900
+        height: 800
   });
 
     window.loadFile('src/index.html');
