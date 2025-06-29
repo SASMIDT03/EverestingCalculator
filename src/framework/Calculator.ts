@@ -64,4 +64,11 @@ export interface Calculator {
      * @return The required amount of watts
      */
     calculateRollingResistanceWatts(totalWeight: number, climbingSpeed: number): number;
+
+    /**
+     * Calculates the total amount of watts for climbing at a specific speed
+     * 
+     * @return The total amount of watts
+     */
+    calculateTotalWatts(): number;
 }
