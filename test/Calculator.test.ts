@@ -8,6 +8,10 @@ beforeEach(() => {
   calculator = new StandardCalculator();
 });
 
+function updateData(): void {
+  calculator.updateData(2.05, 88, 14.5, 71);
+}
+
 test("Should return lapDistance 0 for empty calculator", () => {
     expect(calculator.getLapDistance()).toBe(0);
 })
@@ -25,22 +29,22 @@ test("Should return totalDistance 0 for empty calculator", () => {
 })
 
 test("Should have lapDistance 4.1 when climbDistance updated to 2.05", () => {
-  calculator.updateData(2.05, 0, 0, 0);
+  updateData();
   expect(calculator.getLapDistance()).toBe(4.1);
 })
 
 test("Should have climbingTime x for climbDistance 2.05, climbingSpeed 14.5", () => {
-  calculator.updateData(2.05, 0, 14.5, 0);
+  updateData();
   expect(calculator.getClimbingTime()).toBe(508.9655172413792);
 })
 
 test("Should have totalNumberOfLaps 101 for climbDistance 2.05, elevationGain 88", () => {
-  calculator.updateData(2.05, 88, 0, 0);
+  updateData();
   expect(calculator.getTotalNumberOfLaps()).toBe(101);
 })
 
 test("Should have totalDistance 404 for climbDistance 2.05, elevationGain 88", () => {
-  calculator.updateData(2.05, 88, 0, 0);
+  updateData();
   expect(calculator.getTotalDistance()).toBe(414.1);
 })
 
@@ -57,6 +61,6 @@ test("Should have rollingResistancyWatts 14 for totalWeight 71, climbingSpeed 14
 })
 
 test("Should have totalWatts 152", () => {
-  calculator.updateData(2.05, 88, 14.5, 71);
-  expect(calculator.calculateTotalWatts()).toBe(151.62405473655886);
+  updateData();
+  expect(calculator.calculateTotalWatts(120.54914905149055, 12.617434969979744, 14.041236111111113)).toBe(151.62405473655886);
 })
