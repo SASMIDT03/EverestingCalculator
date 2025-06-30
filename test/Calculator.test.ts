@@ -56,6 +56,7 @@ test("Should have rollingResistancyWatts 14 for totalWeight 71, climbingSpeed 14
   expect(calculator.calculateRollingResistanceWatts(71, 14.5)).toBe(14.041236111111113);
 })
 
-test("Should have totalWatts 145.23 for gravityWatts 120, airRestitancyWatts 10, rollingResistancyWatts 11", () => {
-  expect(calculator.calculateTotalWatts(120, 10, 11)).toBe(145.23);
+test("Should have totalWatts 152", () => {
+  calculator.updateData(2.05, 88, 14.5, 71);
+  expect(calculator.calculateTotalWatts()).toBe(151.62405473655886);
 })

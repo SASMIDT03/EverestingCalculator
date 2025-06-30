@@ -2,12 +2,20 @@ import { Calculator } from "./framework/Calculator";
 import { CalculationConstants } from "./CalculationConstants.js";
 
 export class StandardCalculator implements Calculator {
+    private climbHeight: number;
+    private totalWeight: number;
+    private climbingSpeed: number;
+
     private lapDistance: number;
     private climbingTime: number;
     private totalNumberOfLaps: number;
     private totalDistance: number;
     
     constructor() {
+        this.climbHeight = 0;
+        this.totalWeight = 0;
+        this.climbingSpeed = 0;
+
         this.lapDistance = 0;
         this.climbingTime = 0;
         this.totalNumberOfLaps = 0;
@@ -28,6 +36,10 @@ export class StandardCalculator implements Calculator {
     }
 
     updateData(climbingDistance: number, elevationGain: number, climbingSpeed: number, totalWeight: number): void {
+        this.climbHeight = elevationGain;
+        this.totalWeight = totalWeight;
+        this.climbingSpeed = climbingSpeed;
+
         this.lapDistance = 2 * climbingDistance;
         this.climbingTime = climbingDistance / climbingSpeed * 60 * 60;
         this.totalNumberOfLaps = Math.round(CalculationConstants.HeightOfMountEverest / elevationGain);
@@ -54,10 +66,14 @@ export class StandardCalculator implements Calculator {
         return weight * CalculationConstants.LocalGravitationalConstant * rollingCoefficient * (climbingSpeed / 3.6)
     }
 
-    calculateTotalWatts(climbingWatts: number, airResistanceWatts: number, rollingresistanceWatts: number): number {
+    calculateTotalWatts(): number {
         const driveTrainLoss = CalculationConstants.DriveTrainLoss;
 
-        let totalWatts: number = climbingWatts + airResistanceWatts + rollingresistanceWatts;
+        let climbingWatts = this.calculateClimbingWatts(this.totalWeight, this.climbHeight, this.climbingTime);
+        let airWatts = this.calculateAirResistanceWatts(this.climbingSpeed);
+        let rollingWatts = this.calculateRollingResistanceWatts(this.totalWeight, this.climbingSpeed);
+
+        let totalWatts: number = climbingWatts + airWatts + rollingWatts;
         return totalWatts + (totalWatts * driveTrainLoss);
     }
 }
