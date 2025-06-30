@@ -10,6 +10,11 @@ export class StandardCalculator implements Calculator {
     private climbingTime: number;
     private totalNumberOfLaps: number;
     private totalDistance: number;
+
+    private climbingWatts: number;
+    private airResitanceWatts: number;
+    private rollingResistanceWatts: number;
+    private totalWatts: number;
     
     constructor() {
         this.climbHeight = 0;
@@ -20,6 +25,11 @@ export class StandardCalculator implements Calculator {
         this.climbingTime = 0;
         this.totalNumberOfLaps = 0;
         this.totalDistance = 0;
+
+        this.climbingWatts = 0;
+        this.airResitanceWatts = 0;
+        this.rollingResistanceWatts = 0;
+        this.totalWatts = 0;
     }
 
     getLapDistance(): number {
@@ -35,6 +45,19 @@ export class StandardCalculator implements Calculator {
         return this.totalDistance;
     }
 
+    getClimbingWatts(): number {
+        return this.climbingWatts;
+    }
+    getAirResistancyWatts(): number {
+        return this.airResitanceWatts;
+    }
+    getRollingResistancyWatts(): number {
+        return this.rollingResistanceWatts;
+    }
+    getTotalWatts(): number {
+        return this.totalWatts;
+    }
+
     updateData(climbingDistance: number, elevationGain: number, climbingSpeed: number, totalWeight: number): void {
         this.climbHeight = elevationGain;
         this.totalWeight = totalWeight;
@@ -45,7 +68,11 @@ export class StandardCalculator implements Calculator {
         this.totalNumberOfLaps = Math.round(CalculationConstants.HeightOfMountEverest / elevationGain);
         this.totalDistance = parseFloat((this.totalNumberOfLaps * this.lapDistance).toFixed(2));
 
-        // update watts
+        this.climbingWatts = this.calculateClimbingWatts(this.totalWeight, this.climbHeight, this.climbingTime);
+        this.airResitanceWatts = this.calculateAirResistanceWatts(this.climbingSpeed);
+        this.rollingResistanceWatts = this.calculateRollingResistanceWatts(this.totalWeight, this.climbingSpeed);
+
+        this.totalWatts = this.calculateTotalWatts(this.climbingWatts, this.airResitanceWatts, this.rollingResistanceWatts);
     }
 
     calculateClimbingWatts(totalWeight: number, climbHeight: number, climbingTime: number): number {
@@ -66,14 +93,11 @@ export class StandardCalculator implements Calculator {
         return weight * CalculationConstants.LocalGravitationalConstant * rollingCoefficient * (climbingSpeed / 3.6)
     }
 
-    calculateTotalWatts(): number {
+    calculateTotalWatts(climbingWatts: number, airWatts: number, rollingWatts: number): number {
         const driveTrainLoss = CalculationConstants.DriveTrainLoss;
 
-        let climbingWatts = this.calculateClimbingWatts(this.totalWeight, this.climbHeight, this.climbingTime);
-        let airWatts = this.calculateAirResistanceWatts(this.climbingSpeed);
-        let rollingWatts = this.calculateRollingResistanceWatts(this.totalWeight, this.climbingSpeed);
-
         let totalWatts: number = climbingWatts + airWatts + rollingWatts;
+
         return totalWatts + (totalWatts * driveTrainLoss);
     }
 }
