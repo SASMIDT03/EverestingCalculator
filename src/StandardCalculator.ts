@@ -33,29 +33,29 @@ export class StandardCalculator implements Calculator {
     }
 
     getLapDistance(): number {
-        return this.lapDistance;
+        return parseFloat(this.lapDistance.toFixed(2));
     }
     getClimbingTime(): number {
         return this.climbingTime;
     }
     getTotalNumberOfLaps(): number {
-        return this.totalNumberOfLaps;
+        return Math.ceil(this.totalNumberOfLaps);
     }
     getTotalDistance(): number {
-        return this.totalDistance;
+        return parseFloat(this.totalDistance.toFixed(2));
     }
 
     getClimbingWatts(): number {
-        return this.climbingWatts;
+        return parseFloat(this.climbingWatts.toFixed(2));
     }
     getAirResistancyWatts(): number {
-        return this.airResitanceWatts;
+        return parseFloat(this.airResitanceWatts.toFixed(2));
     }
     getRollingResistancyWatts(): number {
-        return this.rollingResistanceWatts;
+        return parseFloat(this.rollingResistanceWatts.toFixed(2));
     }
     getTotalWatts(): number {
-        return this.totalWatts;
+        return parseFloat(this.totalWatts.toFixed(2));
     }
 
     updateData(climbingDistance: number, elevationGain: number, climbingSpeed: number, totalWeight: number): void {
