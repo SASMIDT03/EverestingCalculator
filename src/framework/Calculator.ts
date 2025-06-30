@@ -68,11 +68,7 @@ export interface Calculator {
     /**
      * Calculates the total amount of watts for climbing at a specific speed
      * 
-     * @param climbingWatts The required amount of watts to overcome gravity
-     * @param airResistanceWatts The required amount of watts to overcome airresistancy
-     * @param rollingresistanceWatts The required amount of watts to overcome rollingresistancy
-     * 
      * @return The total amount of watts
      */
-    calculateTotalWatts(climbingWatts: number, airResistanceWatts: number, rollingresistanceWatts: number): number;
+    calculateTotalWatts(): number;
 }
