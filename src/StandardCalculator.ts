@@ -53,4 +53,10 @@ export class StandardCalculator implements Calculator {
         return weight * 9.82 * rollingCoefficient * (climbingSpeed / 3.6)
     }
 
+    calculateTotalWatts(climbingWatts: number, airResistanceWatts: number, rollingresistanceWatts: number): number {
+        const driveTrainLoss = 0.03;
+
+        let totalWatts: number = climbingWatts + airResistanceWatts + rollingresistanceWatts;
+        return totalWatts + (totalWatts * driveTrainLoss);
+    }
 }
