@@ -1,5 +1,5 @@
 import { Calculator } from "./framework/Calculator";
-import { CalculationConstants } from "./CalculationConstants";
+import { CalculationConstants } from "./CalculationConstants.js";
 
 export class StandardCalculator implements Calculator {
     private lapDistance: number;
