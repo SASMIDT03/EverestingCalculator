@@ -1,4 +1,5 @@
 import { Calculator } from "./framework/Calculator";
+import { CalculationConstants } from "./CalculationConstants";
 
 export class StandardCalculator implements Calculator {
     private lapDistance: number;
@@ -29,32 +30,32 @@ export class StandardCalculator implements Calculator {
     updateData(climbingDistance: number, elevationGain: number, climbingSpeed: number, totalWeight: number): void {
         this.lapDistance = 2 * climbingDistance;
         this.climbingTime = climbingDistance / climbingSpeed * 60 * 60;
-        this.totalNumberOfLaps = Math.round(8849 / elevationGain);
+        this.totalNumberOfLaps = Math.round(CalculationConstants.HeightOfMountEverest / elevationGain);
         this.totalDistance = parseFloat((this.totalNumberOfLaps * this.lapDistance).toFixed(2));
 
         // update watts
     }
 
     calculateClimbingWatts(totalWeight: number, climbHeight: number, climbingTime: number): number {
-        return (totalWeight * 9.82 * climbHeight) / climbingTime;
+        return (totalWeight * CalculationConstants.LocalGravitationalConstant * climbHeight) / climbingTime;
     }
 
     calculateAirResistanceWatts(climbingSpeed: number): number {
-        const airDensity = 1.225;
-        const cda = 0.5;
-        const frontalArea = 0.5;
+        const airDensity = CalculationConstants.AirDensity;
+        const cda = CalculationConstants.CDA;
+        const frontalArea = CalculationConstants.FrontalArea;
 
         return (1/2) * airDensity * cda * frontalArea * (climbingSpeed / 3.6)**3;
     }
 
     calculateRollingResistanceWatts(weight: number, climbingSpeed: number): number {
-        const rollingCoefficient = 0.004
+        const rollingCoefficient = CalculationConstants.RollingCoefficient;
 
-        return weight * 9.82 * rollingCoefficient * (climbingSpeed / 3.6)
+        return weight * CalculationConstants.LocalGravitationalConstant * rollingCoefficient * (climbingSpeed / 3.6)
     }
 
     calculateTotalWatts(climbingWatts: number, airResistanceWatts: number, rollingresistanceWatts: number): number {
-        const driveTrainLoss = 0.03;
+        const driveTrainLoss = CalculationConstants.DriveTrainLoss;
 
         let totalWatts: number = climbingWatts + airResistanceWatts + rollingresistanceWatts;
         return totalWatts + (totalWatts * driveTrainLoss);
