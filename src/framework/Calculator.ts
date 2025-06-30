@@ -24,6 +24,26 @@ export interface Calculator {
     getTotalDistance(): number;
 
     /**
+     * @return Returns the required amount of watts to overcome gravity
+     */
+    getClimbingWatts(): number;
+
+    /**
+     * @return Returns the required amount of watts to overcome air resistancy
+     */
+    getAirResistancyWatts(): number;
+
+    /**
+     * @return Returns the required amount of watts to overcome rolling resistancy
+     */
+    getRollingResistancyWatts(): number;
+
+    /**
+     * @return Returns the total amount of watts required to climb a specific segment
+     */
+    getTotalWatts(): number;
+
+    /**
      * Updates all the datapoints used in the watts calculation
      * 
      * @param climbingDistance Length of the climb
