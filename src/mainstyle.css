@@ -168,4 +168,6 @@ button:active {
     background-color: var(--grey);
     width: 75%;
     border-radius: 12px;
+    padding: 4%;
+    font-size: 175%;
 }
