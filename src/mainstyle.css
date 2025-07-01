@@ -160,6 +160,7 @@ button:active {
 
 .calculatedDataBox {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 
@@ -168,6 +169,15 @@ button:active {
     background-color: var(--grey);
     width: 75%;
     border-radius: 12px;
-    padding: 4%;
+    padding: 2%;
+}
+
+.calculatedDataDescription {
+    width: 100%;
+    margin-bottom: 4%;
+    font-size: 75%;
+}
+
+.calculatedDataInnerBox {
     font-size: 175%;
 }
