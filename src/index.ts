@@ -18,6 +18,10 @@ const restStopSliderTimerText: HTMLDivElement = document.querySelector("#restSto
 
 const totalNumberOfRestStopInput: HTMLInputElement = document.querySelector("#totalRestStops")!;
 
+const totalWattsText: HTMLDivElement = document.querySelector("#totalWattsText")!;
+const totalDistanceText: HTMLDivElement = document.querySelector("#totalDistanceText")!;
+const lapDistanceText: HTMLDivElement = document.querySelector("#lapDistanceText")!;
+
 restStopSlider.addEventListener("input", () => {
     const timeValue: number = parseInt(restStopSlider.value);
     restStopSliderTimerText.innerHTML = formatTime(timeValue);  
@@ -30,7 +34,7 @@ function formatTime(timeValue: number): string {
 }
 
 calculateButton.addEventListener("click", () => {
-
+    console.log("Button pressed");
     // TODO: Guard check
 
     let distanceOfClimb: number = parseFloat(distanceOfClimbInput.value);
@@ -42,4 +46,11 @@ calculateButton.addEventListener("click", () => {
     let numberOfRestStops: number = parseFloat(totalNumberOfRestStopInput.value);
 
     calculator.updateData(distanceOfClimb, elevationGain, climbingSpeed, totalWeight);
-})
+    updateCalculationText();
+});
+
+function updateCalculationText() {
+    totalWattsText.innerHTML = calculator.getTotalWatts().toString() + "w";
+    totalDistanceText.innerHTML = calculator.getTotalDistance().toString() + "km";
+    lapDistanceText.innerHTML = calculator.getLapDistance().toString() + "km";
+}
