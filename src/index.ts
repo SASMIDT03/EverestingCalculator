@@ -22,6 +22,20 @@ const totalWattsText: HTMLDivElement = document.querySelector("#totalWattsText")
 const totalDistanceText: HTMLDivElement = document.querySelector("#totalDistanceText")!;
 const lapDistanceText: HTMLDivElement = document.querySelector("#lapDistanceText")!;
 
+// Dynamic focus
+document.querySelectorAll<HTMLDivElement>(".entryDiv").forEach((entry) => {
+    let inputField: HTMLInputElement = entry.querySelector("input")!;
+
+    entry.addEventListener("focus", () => {
+        inputField.focus();
+        entry.classList.toggle("entryDivFocus");
+    });
+
+    inputField.addEventListener("blur", () => {
+        entry.classList.toggle("entryDivFocus");
+    });
+});
+
 restStopSlider.addEventListener("input", () => {
     const timeValue: number = parseInt(restStopSlider.value);
     restStopSliderTimerText.innerHTML = formatTime(timeValue);  
