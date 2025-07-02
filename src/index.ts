@@ -22,6 +22,10 @@ const totalWattsText: HTMLDivElement = document.querySelector("#totalWattsText")
 const totalDistanceText: HTMLDivElement = document.querySelector("#totalDistanceText")!;
 const lapDistanceText: HTMLDivElement = document.querySelector("#lapDistanceText")!;
 
+const calculatedWattsBox: HTMLDivElement = document.querySelector("#calculatedWattsBox")!;
+const expandedWattsCalculationBox: HTMLDivElement = document.querySelector("#expandedWattsCalculations")!;
+const popupBox: HTMLDivElement = document.querySelector("#popupContent")!;
+
 // Dynamic focus
 document.querySelectorAll<HTMLDivElement>(".entryDiv").forEach((entry) => {
     let inputField: HTMLInputElement = entry.querySelector("input")!;
@@ -61,6 +65,7 @@ calculateButton.addEventListener("click", () => {
 
     calculator.updateData(distanceOfClimb, elevationGain, climbingSpeed, totalWeight);
     updateCalculationText();
+    updatePopupCalculationText();
 });
 
 function updateCalculationText() {
@@ -68,3 +73,27 @@ function updateCalculationText() {
     totalDistanceText.innerHTML = calculator.getTotalDistance().toString() + "km";
     lapDistanceText.innerHTML = calculator.getLapDistance().toString() + "km";
 }
+
+function updatePopupCalculationText() {
+    let gravityWattsText: HTMLDivElement = document.querySelector("#gravityWattsText")!;
+    let airWattsText: HTMLDivElement = document.querySelector("#airWattsText")!;
+    let rollingWattsText: HTMLDivElement = document.querySelector("#rollingWattsText")!;
+
+    let calculationField: HTMLDivElement = document.querySelector("#calculationField")!;
+
+    let gravityWatts: string = calculator.getClimbingWatts().toFixed(2);
+    let airWatts: string = calculator.getAirResistancyWatts().toFixed(2);
+    let rollingWatts: string = calculator.getRollingResistancyWatts().toFixed(2);
+    let totalWatts: string = calculator.getTotalWatts().toFixed(2);
+
+    gravityWattsText.innerHTML = gravityWatts + "w";
+    airWattsText.innerHTML = airWatts + "w";
+    rollingWattsText.innerHTML = rollingWatts + "w";
+
+    calculationField.innerHTML = gravityWatts + "+" + airWatts + "+" + rollingWatts + " = " + totalWatts + "w";
+}
+
+calculatedWattsBox.addEventListener("click", () => { expandedWattsCalculationBox.style.display = "flex"; });
+
+popupBox.addEventListener("click", event => { event.stopPropagation(); });
+expandedWattsCalculationBox.addEventListener("click", () => { expandedWattsCalculationBox.style.display = "none"; });

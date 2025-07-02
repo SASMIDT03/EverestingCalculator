@@ -7,6 +7,27 @@
     <link rel="stylesheet" href="mainstyle.css">
 </head>
 <body>
+    <div id="expandedWattsCalculations">
+        <div id="popupContent">
+            <div id="popupContentCalculatedData">
+                <div class="calculatedDataBox">
+                    <div class="calculatedDataDescription">Watts to overcome gravity:</div>
+                    <div class="calculatedDataInnerBox" id="gravityWattsText">666km</div>
+                </div>
+                <div class="calculatedDataBox">
+                    <div class="calculatedDataDescription">Watts to overcome air resistancy:</div>
+                    <div class="calculatedDataInnerBox" id="airWattsText">666km</div>
+                </div>
+                <div class="calculatedDataBox">
+                    <div class="calculatedDataDescription">Watts to overcome rolling resistancy:</div>
+                    <div class="calculatedDataInnerBox" id="rollingWattsText">666km</div>
+                </div>
+            </div>
+            <div id="calculationField">123+123+123=123w</div>
+            <p>Drivetrainloss of 5% is applied indirectly.</p>
+        </div>
+    </div>
+
     <div class="title">
         <h1>Everesting Calculator</h1>
     </div>
@@ -49,7 +70,7 @@
             <button type="button" id="calculateDataButton">Calculate</button>
         </div>
         <div class="rightSide sharedSide">
-            <div class="calculatedDataBox">
+            <div class="calculatedDataBox" id="calculatedWattsBox">
                 <div class="calculatedDataDescription">Required watts:</div>
                 <div class="calculatedDataInnerBox" id="totalWattsText">444w</div>
             </div>
@@ -63,7 +84,6 @@
             </div>
         </div>
     </div>
-    
 
     <script type="module" src="../dist/src/index.js"></script>
 </body>
