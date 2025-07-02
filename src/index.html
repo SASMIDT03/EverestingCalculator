@@ -8,8 +8,8 @@
 </head>
 <body>
     <div id="expandedWattsCalculations">
-        <div id="wattsPopupContent">
-            <div id="wattsPopupContentCalculatedData">
+        <div class="popupContent" id="wattsPopupContent">
+            <div class="popupContentCalculatedData">
                 <div class="calculatedDataBox">
                     <div class="calculatedDataDescription">Watts to overcome gravity:</div>
                     <div class="calculatedDataInnerBox" id="gravityWattsText">0</div>
@@ -25,6 +25,19 @@
             </div>
             <div id="calculationField">0+0+0=0w</div>
             <p>Drivetrainloss of 5% is applied indirectly.</p>
+        </div>
+        <div class="popupContent" id="distancePopupContent">
+            <div class="popupContentCalculatedData">
+                <div class="calculatedDataBox">
+                    <div class="calculatedDataDescription">Lap distance:</div>
+                    <div class="calculatedDataInnerBox" id="lapDistanceText">0km</div>
+                </div>
+                <div class="calculatedDataBox">
+                    <div class="calculatedDataDescription">Total distance:</div>
+                    <div class="calculatedDataInnerBox" id="totalDistanceTextPop">0km</div>
+                </div>
+            </div> 
+            <p>Height of Mount Everest assumed to be 8849m.</p>
         </div>
     </div>
 
@@ -70,17 +83,13 @@
             <button type="button" id="calculateDataButton">Calculate</button>
         </div>
         <div class="rightSide sharedSide">
-            <div class="calculatedDataBox" id="calculatedWattsBox">
+            <div class="calculatedDataBox pressableBox" id="calculatedWattsBox">
                 <div class="calculatedDataDescription">Required watts:</div>
                 <div class="calculatedDataInnerBox" id="totalWattsText">0w</div>
             </div>
-            <div class="calculatedDataBox">
+            <div class="calculatedDataBox pressableBox" id="calulatedDistanceBox">
                 <div class="calculatedDataDescription">Total distance:</div>
                 <div class="calculatedDataInnerBox" id="totalDistanceText">0km</div>
-            </div>
-            <div class="calculatedDataBox">
-                <div class="calculatedDataDescription">Lap distance:</div>
-                <div class="calculatedDataInnerBox" id="lapDistanceText">0km</div>
             </div>
         </div>
     </div>

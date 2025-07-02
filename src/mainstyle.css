@@ -171,7 +171,8 @@ button:active {
     background-color: var(--grey);
     width: 75%;
     border-radius: 12px;
-    padding: 2%;
+    padding: 1.5vw;
+    min-height: 7vw;
 }
 
 .calculatedDataDescription {
@@ -184,7 +185,7 @@ button:active {
     font-size: 175%;
 }
 
-#calculatedWattsBox:hover {
+.pressableBox:hover {
     box-shadow: 0px 4px 4px 0px var(--darkBlue);
     cursor: pointer;
 }
@@ -205,21 +206,25 @@ button:active {
 }
 
 #wattsPopupContent {
+    display: none;
+}
+
+.popupContent {
     background-color: var(--white);
     padding: 1%;
     width: 90%;
-
     border-radius: 4px;
-    display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    min-height: 32vh;
 }
 
-#wattsPopupContent p {
+.popupContent p {
     font-size: 64%;
 }
 
-#wattsPopupContentCalculatedData {
+.popupContentCalculatedData {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -229,4 +234,8 @@ button:active {
 #calculationField {
     margin: 2%;
     font-size: 175%;
+}
+
+#distancePopupContent {
+    display: none;
 }

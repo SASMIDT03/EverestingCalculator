@@ -26,6 +26,9 @@ const calculatedWattsBox: HTMLDivElement = document.querySelector("#calculatedWa
 const expandedWattsCalculationBox: HTMLDivElement = document.querySelector("#expandedWattsCalculations")!;
 const wattsPopupBox: HTMLDivElement = document.querySelector("#wattsPopupContent")!;
 
+const calculatedDistanceBox: HTMLDivElement = document.querySelector("#calulatedDistanceBox")!;
+const distancePopupBox: HTMLDivElement = document.querySelector("#distancePopupContent")!;
+
 // Dynamic focus
 document.querySelectorAll<HTMLDivElement>(".entryDiv").forEach((entry) => {
     let inputField: HTMLInputElement = entry.querySelector("input")!;
@@ -66,6 +69,7 @@ calculateButton.addEventListener("click", () => {
     calculator.updateData(distanceOfClimb, elevationGain, climbingSpeed, totalWeight);
     updateCalculationText();
     updateWattsPopupCalculationText();
+    updateDistancePopupContent();
 });
 
 function updateCalculationText() {
@@ -93,7 +97,29 @@ function updateWattsPopupCalculationText() {
     calculationField.innerHTML = gravityWatts + "+" + airWatts + "+" + rollingWatts + " = " + totalWatts + "w";
 }
 
-calculatedWattsBox.addEventListener("click", () => { expandedWattsCalculationBox.style.display = "flex"; });
+function updateDistancePopupContent() {
+    let lapDistanceText: HTMLDivElement = document.querySelector("#lapDistanceText")!;
+    let totalDistanceText: HTMLDivElement = document.querySelector("#totalDistanceTextPop")!;
+
+    lapDistanceText.innerHTML = calculator.getLapDistance().toFixed(2) + "km";
+    totalDistanceText.innerHTML = calculator.getTotalDistance().toFixed(2) + "km";
+}
+
+calculatedWattsBox.addEventListener("click", () => { 
+    expandedWattsCalculationBox.style.display = "flex";
+    wattsPopupBox.style.display = "flex";
+});
 
 wattsPopupBox.addEventListener("click", event => { event.stopPropagation(); });
-expandedWattsCalculationBox.addEventListener("click", () => { expandedWattsCalculationBox.style.display = "none"; });
+expandedWattsCalculationBox.addEventListener("click", () => { 
+    expandedWattsCalculationBox.style.display = "none";
+    wattsPopupBox.style.display = "none";
+    distancePopupBox.style.display = "none";
+});
+
+calculatedDistanceBox.addEventListener("click", () => {
+    expandedWattsCalculationBox.style.display = "flex";
+    
+    distancePopupBox.style.display = "flex"
+    distancePopupBox.addEventListener("click", event => { event.stopPropagation(); });
+})
