@@ -204,7 +204,7 @@ button:active {
     align-items: center;
 }
 
-#popupContent {
+#wattsPopupContent {
     background-color: var(--white);
     padding: 1%;
     width: 90%;
@@ -215,11 +215,11 @@ button:active {
     align-items: center;
 }
 
-#popupContent p {
+#wattsPopupContent p {
     font-size: 64%;
 }
 
-#popupContentCalculatedData {
+#wattsPopupContentCalculatedData {
     display: flex;
     justify-content: center;
     align-items: center;

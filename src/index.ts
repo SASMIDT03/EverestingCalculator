@@ -24,7 +24,7 @@ const lapDistanceText: HTMLDivElement = document.querySelector("#lapDistanceText
 
 const calculatedWattsBox: HTMLDivElement = document.querySelector("#calculatedWattsBox")!;
 const expandedWattsCalculationBox: HTMLDivElement = document.querySelector("#expandedWattsCalculations")!;
-const popupBox: HTMLDivElement = document.querySelector("#popupContent")!;
+const wattsPopupBox: HTMLDivElement = document.querySelector("#wattsPopupContent")!;
 
 // Dynamic focus
 document.querySelectorAll<HTMLDivElement>(".entryDiv").forEach((entry) => {
@@ -65,7 +65,7 @@ calculateButton.addEventListener("click", () => {
 
     calculator.updateData(distanceOfClimb, elevationGain, climbingSpeed, totalWeight);
     updateCalculationText();
-    updatePopupCalculationText();
+    updateWattsPopupCalculationText();
 });
 
 function updateCalculationText() {
@@ -74,7 +74,7 @@ function updateCalculationText() {
     lapDistanceText.innerHTML = calculator.getLapDistance().toString() + "km";
 }
 
-function updatePopupCalculationText() {
+function updateWattsPopupCalculationText() {
     let gravityWattsText: HTMLDivElement = document.querySelector("#gravityWattsText")!;
     let airWattsText: HTMLDivElement = document.querySelector("#airWattsText")!;
     let rollingWattsText: HTMLDivElement = document.querySelector("#rollingWattsText")!;
@@ -95,5 +95,5 @@ function updatePopupCalculationText() {
 
 calculatedWattsBox.addEventListener("click", () => { expandedWattsCalculationBox.style.display = "flex"; });
 
-popupBox.addEventListener("click", event => { event.stopPropagation(); });
+wattsPopupBox.addEventListener("click", event => { event.stopPropagation(); });
 expandedWattsCalculationBox.addEventListener("click", () => { expandedWattsCalculationBox.style.display = "none"; });
