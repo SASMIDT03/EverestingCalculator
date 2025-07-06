@@ -14,6 +14,31 @@ export interface Calculator {
     getClimbingTime(): number;
 
     /**
+     * @return Returns the total time spend climbing to complete an everest
+     */
+    getTotalClimbingTime(): number;
+
+    /**
+     * @return Returns the time it takes to complete one descent (ss)
+     */
+    getDescendingTime(): number;
+
+    /**
+     * @return Returns the total time spend descending to complete an everest
+     */
+    getTotalDescendingTime(): number;
+
+    /**
+     * @return Returns the total time it takes to complete an everest (ss)
+     */
+    getTotalTime(): number;
+
+    /**
+     * @return Returns the total amount of time to rest (ss)
+     */
+    getTotalRestStopTime(): number;
+
+    /**
      * @return Returns the total amount of laps required to complete an everest
      */
     getTotalNumberOfLaps(): number;
@@ -24,6 +49,26 @@ export interface Calculator {
     getTotalDistance(): number;
 
     /**
+     * @return Returns the required amount of watts to overcome gravity
+     */
+    getClimbingWatts(): number;
+
+    /**
+     * @return Returns the required amount of watts to overcome air resistancy
+     */
+    getAirResistancyWatts(): number;
+
+    /**
+     * @return Returns the required amount of watts to overcome rolling resistancy
+     */
+    getRollingResistancyWatts(): number;
+
+    /**
+     * @return Returns the total amount of watts required to climb a specific segment
+     */
+    getTotalWatts(): number;
+
+    /**
      * Updates all the datapoints used in the watts calculation
      * 
      * @param climbingDistance Length of the climb
@@ -32,7 +77,8 @@ export interface Calculator {
      * @param totalWeight Total weight of rider and equipment (kg)
      */
     updateData(climbingDistance: number, elevationGain: number, climbingSpeed: number,
-               totalWeight: number
+               totalWeight: number, descendingSpeed: number, restStopTime: number,
+               totalNumbersOfRestStops: number
     ): void;
 
     /**
@@ -69,10 +115,10 @@ export interface Calculator {
      * Calculates the total amount of watts for climbing at a specific speed
      * 
      * @param climbingWatts The required amount of watts to overcome gravity
-     * @param airResistanceWatts The required amount of watts to overcome airresistancy
-     * @param rollingresistanceWatts The required amount of watts to overcome rollingresistancy
+     * @param airWatts The required amount of watts to overcome air resistancy
+     * @param rollingWatts The required amount of watts to overcome rolling resistancy
      * 
      * @return The total amount of watts
      */
-    calculateTotalWatts(climbingWatts: number, airResistanceWatts: number, rollingresistanceWatts: number): number;
+    calculateTotalWatts(climbingWatts: number, airWatts: number, rollingWatts: number): number;
 }

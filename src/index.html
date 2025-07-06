@@ -7,6 +7,57 @@
     <link rel="stylesheet" href="mainstyle.css">
 </head>
 <body>
+    <div id="expandedWattsCalculations">
+        <div class="popupContent" id="wattsPopupContent">
+            <div class="popupContentCalculatedData">
+                <div class="calculatedDataBox">
+                    <div class="calculatedDataDescription">Watts to overcome gravity:</div>
+                    <div class="calculatedDataInnerBox" id="gravityWattsText">0</div>
+                </div>
+                <div class="calculatedDataBox">
+                    <div class="calculatedDataDescription">Watts to overcome air resistancy:</div>
+                    <div class="calculatedDataInnerBox" id="airWattsText">0</div>
+                </div>
+                <div class="calculatedDataBox">
+                    <div class="calculatedDataDescription">Watts to overcome rolling resistancy:</div>
+                    <div class="calculatedDataInnerBox" id="rollingWattsText">0</div>
+                </div>
+            </div>
+            <div id="calculationField">0+0+0=0w</div>
+            <p>Drivetrainloss of 5% is applied indirectly.</p>
+        </div>
+        <div class="popupContent" id="distancePopupContent">
+            <div class="popupContentCalculatedData">
+                <div class="calculatedDataBox">
+                    <div class="calculatedDataDescription">Lap distance:</div>
+                    <div class="calculatedDataInnerBox" id="lapDistanceText">0km</div>
+                </div>
+                <div class="calculatedDataBox">
+                    <div class="calculatedDataDescription">Total distance:</div>
+                    <div class="calculatedDataInnerBox" id="totalDistanceTextPop">0km</div>
+                </div>
+            </div> 
+            <p>Height of Mount Everest assumed to be 8849m.</p>
+        </div>
+        <div class="popupContent" id="lapsPopupContent">
+            <div class="popupContentCalculatedData">
+                <div class="calculatedDataBox">
+                    <div class="calculatedDataDescription">Total number of laps:</div>
+                    <div class="calculatedDataInnerBox" id="totalLapsTextPop">0</div>
+                </div>
+            </div> 
+            <p>Height of Mount Everest assumed to be 8849m.</p>
+        </div>
+        <div class="popupContent" id="timePopupContent">
+            <div class="popupContentCalculatedData">
+                <div class="calculatedDataBox">
+                    <div class="calculatedDataDescription">Total climbingtime:</div>
+                    <div class="calculatedDataInnerBox" id="totalClimbingTime">00m:00s</div>
+                </div>
+            </div> 
+        </div>
+    </div>
+
     <div class="title">
         <h1>Everesting Calculator</h1>
     </div>
@@ -49,12 +100,24 @@
             <button type="button" id="calculateDataButton">Calculate</button>
         </div>
         <div class="rightSide sharedSide">
-            <div class="calculatedDataBox"><h2 id="totalWattsText">164w</h2></div>
-            <div class="calculatedDataBox"><h2 id="totalDistanceText">423km</h2></div>
-            <div class="calculatedDataBox"><h2 id="lapDistanceText">4.03km</h2></div>
+            <div class="calculatedDataBox pressableBox" id="calculatedWattsBox">
+                <div class="calculatedDataDescription">Required watts:</div>
+                <div class="calculatedDataInnerBox" id="totalWattsText">0w</div>
+            </div>
+            <div class="calculatedDataBox pressableBox" id="calulatedDistanceBox">
+                <div class="calculatedDataDescription">Total distance:</div>
+                <div class="calculatedDataInnerBox" id="totalDistanceText">0km</div>
+            </div>
+            <div class="calculatedDataBox pressableBox" id="calulatedLapsBox">
+                <div class="calculatedDataDescription">Total laps:</div>
+                <div class="calculatedDataInnerBox" id="totalLapsText">0</div>
+            </div>
+            <div class="calculatedDataBox pressableBox" id="calculatedTotalTimeBox">
+                <div class="calculatedDataDescription">Total time:</div>
+                <div class="calculatedDataInnerBox" id="totalTimeText">00m:00s</div>
+            </div>
         </div>
     </div>
-    
 
     <script type="module" src="../dist/src/index.js"></script>
 </body>

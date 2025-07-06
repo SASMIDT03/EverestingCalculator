@@ -61,7 +61,6 @@ input[type="number"] {
 input[type="number"]:focus {
     outline: none;
     box-shadow: 0px 4px 0px 0px var(--yellow);
-    
 }
 
 /* Disable spinners in all number inputs */
@@ -96,6 +95,9 @@ input[type="range"]:focus {
 
 .entryDiv:focus {
     outline: none;
+}
+
+.entryDivFocus {
     box-shadow: 0px 4px 4px 0px var(--yellow);
 }
 
@@ -160,6 +162,7 @@ button:active {
 
 .calculatedDataBox {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 
@@ -168,4 +171,79 @@ button:active {
     background-color: var(--grey);
     width: 75%;
     border-radius: 12px;
+    padding: 1.5vw;
+    min-height: 7vw;
+}
+
+.calculatedDataDescription {
+    width: 100%;
+    margin-bottom: 4%;
+    font-size: 75%;
+}
+
+.calculatedDataInnerBox {
+    font-size: 175%;
+}
+
+.pressableBox:hover {
+    box-shadow: 0px 4px 4px 0px var(--darkBlue);
+    cursor: pointer;
+}
+
+#expandedWattsCalculations {
+    width: 100%;
+    height: 100%;
+
+    display: none; /* Hidden by default */
+    position: fixed; /* Fixed to viewport, always visible on top */
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.4); /* Dark background for overlay */
+    z-index: 10; /* High z-index to make sure it is above all content */
+
+    justify-content: center;
+    align-items: center;
+}
+
+#wattsPopupContent {
+    display: none;
+}
+
+.popupContent {
+    background-color: var(--white);
+    padding: 1%;
+    width: 90%;
+    border-radius: 4px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 32vh;
+}
+
+.popupContent p {
+    font-size: 64%;
+}
+
+.popupContentCalculatedData {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+#calculationField {
+    margin: 2%;
+    font-size: 175%;
+}
+
+#distancePopupContent {
+    display: none;
+}
+
+#lapsPopupContent {
+    display: none;
+}
+
+#timePopupContent {
+    display: none;
 }
