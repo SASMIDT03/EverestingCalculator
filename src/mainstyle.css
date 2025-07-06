@@ -243,3 +243,7 @@ button:active {
 #lapsPopupContent {
     display: none;
 }
+
+#timePopupContent {
+    display: none;
+}

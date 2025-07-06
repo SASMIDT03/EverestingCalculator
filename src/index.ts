@@ -32,6 +32,9 @@ const distancePopupBox: HTMLDivElement = document.querySelector("#distancePopupC
 const calculatedLapsBox: HTMLDivElement = document.querySelector("#calulatedLapsBox")!;
 const lapsPopupBox: HTMLDivElement = document.querySelector("#lapsPopupContent")!;
 
+const calculatedTotalTimeBox: HTMLDivElement = document.querySelector("#calculatedTotalTimeBox")!;
+const timePopupBox: HTMLDivElement = document.querySelector("#timePopupContent")!;
+
 // Dynamic focus
 document.querySelectorAll<HTMLDivElement>(".entryDiv").forEach((entry) => {
     let inputField: HTMLInputElement = entry.querySelector("input")!;
@@ -69,7 +72,9 @@ calculateButton.addEventListener("click", () => {
     let restStopTime: number = parseFloat(restStopSlider.value);
     let numberOfRestStops: number = parseFloat(totalNumberOfRestStopInput.value);
 
-    calculator.updateData(distanceOfClimb, elevationGain, climbingSpeed, totalWeight);
+    calculator.updateData(distanceOfClimb, elevationGain, climbingSpeed, totalWeight, descendingSpeed,
+                          restStopTime, numberOfRestStops
+    );
     updateCalculationText();
     updateWattsPopupCalculationText();
     updateDistancePopupContent();
@@ -126,6 +131,7 @@ expandedWattsCalculationBox.addEventListener("click", () => {
     wattsPopupBox.style.display = "none";
     distancePopupBox.style.display = "none";
     lapsPopupBox.style.display = "none";
+    timePopupBox.style.display = "none";
 });
 
 calculatedDistanceBox.addEventListener("click", () => {
@@ -140,4 +146,11 @@ calculatedLapsBox.addEventListener("click", () => {
 
     lapsPopupBox.style.display = "flex";
     lapsPopupBox.addEventListener("click", event => { event.stopPropagation(); } );
+});
+
+calculatedTotalTimeBox.addEventListener("click", () => {
+    expandedWattsCalculationBox.style.display = "flex";
+
+    timePopupBox.style.display = "flex";
+    timePopupBox.addEventListener("click", event => { event.stopPropagation(); });
 })
