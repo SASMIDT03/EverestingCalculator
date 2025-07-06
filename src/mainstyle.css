@@ -239,3 +239,7 @@ button:active {
 #distancePopupContent {
     display: none;
 }
+
+#lapsPopupContent {
+    display: none;
+}

@@ -20,7 +20,7 @@ const totalNumberOfRestStopInput: HTMLInputElement = document.querySelector("#to
 
 const totalWattsText: HTMLDivElement = document.querySelector("#totalWattsText")!;
 const totalDistanceText: HTMLDivElement = document.querySelector("#totalDistanceText")!;
-const lapDistanceText: HTMLDivElement = document.querySelector("#lapDistanceText")!;
+const totalLapsText: HTMLDivElement = document.querySelector("#totalLapsText")!;
 
 const calculatedWattsBox: HTMLDivElement = document.querySelector("#calculatedWattsBox")!;
 const expandedWattsCalculationBox: HTMLDivElement = document.querySelector("#expandedWattsCalculations")!;
@@ -28,6 +28,9 @@ const wattsPopupBox: HTMLDivElement = document.querySelector("#wattsPopupContent
 
 const calculatedDistanceBox: HTMLDivElement = document.querySelector("#calulatedDistanceBox")!;
 const distancePopupBox: HTMLDivElement = document.querySelector("#distancePopupContent")!;
+
+const calculatedLapsBox: HTMLDivElement = document.querySelector("#calulatedLapsBox")!;
+const lapsPopupBox: HTMLDivElement = document.querySelector("#lapsPopupContent")!;
 
 // Dynamic focus
 document.querySelectorAll<HTMLDivElement>(".entryDiv").forEach((entry) => {
@@ -70,12 +73,13 @@ calculateButton.addEventListener("click", () => {
     updateCalculationText();
     updateWattsPopupCalculationText();
     updateDistancePopupContent();
+    updateLapsPopupContent();
 });
 
 function updateCalculationText() {
     totalWattsText.innerHTML = calculator.getTotalWatts().toString() + "w";
     totalDistanceText.innerHTML = calculator.getTotalDistance().toString() + "km";
-    lapDistanceText.innerHTML = calculator.getLapDistance().toString() + "km";
+    totalLapsText.innerHTML = calculator.getTotalNumberOfLaps().toString();
 }
 
 function updateWattsPopupCalculationText() {
@@ -105,6 +109,12 @@ function updateDistancePopupContent() {
     totalDistanceText.innerHTML = calculator.getTotalDistance().toFixed(2) + "km";
 }
 
+function updateLapsPopupContent() {
+    let totalLapsText: HTMLDivElement = document.querySelector("#totalLapsTextPop")!;
+
+    totalLapsText.innerHTML = calculator.getTotalNumberOfLaps().toString();
+}
+
 calculatedWattsBox.addEventListener("click", () => { 
     expandedWattsCalculationBox.style.display = "flex";
     wattsPopupBox.style.display = "flex";
@@ -115,11 +125,19 @@ expandedWattsCalculationBox.addEventListener("click", () => {
     expandedWattsCalculationBox.style.display = "none";
     wattsPopupBox.style.display = "none";
     distancePopupBox.style.display = "none";
+    lapsPopupBox.style.display = "none";
 });
 
 calculatedDistanceBox.addEventListener("click", () => {
     expandedWattsCalculationBox.style.display = "flex";
     
-    distancePopupBox.style.display = "flex"
+    distancePopupBox.style.display = "flex";
     distancePopupBox.addEventListener("click", event => { event.stopPropagation(); });
+});
+
+calculatedLapsBox.addEventListener("click", () => {
+    expandedWattsCalculationBox.style.display = "flex";
+
+    lapsPopupBox.style.display = "flex";
+    lapsPopupBox.addEventListener("click", event => { event.stopPropagation(); } );
 })
