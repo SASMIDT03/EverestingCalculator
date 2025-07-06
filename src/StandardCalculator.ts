@@ -7,7 +7,14 @@ export class StandardCalculator implements Calculator {
     private climbingSpeed: number;
 
     private lapDistance: number;
+
     private climbingTime: number;
+    private totalClimbingTime: number;
+    private descendingTime: number;
+    private totalDescendingTime: number;
+    private totalTime: number;
+    private totalRestStopTime: number;
+
     private totalNumberOfLaps: number;
     private totalDistance: number;
 
@@ -22,7 +29,14 @@ export class StandardCalculator implements Calculator {
         this.climbingSpeed = 0;
 
         this.lapDistance = 0;
+
         this.climbingTime = 0;
+        this.totalClimbingTime = 0;
+        this.descendingTime = 0;
+        this.totalDescendingTime = 0;
+        this.totalTime = 0;
+        this.totalRestStopTime = 0;
+
         this.totalNumberOfLaps = 0;
         this.totalDistance = 0;
 
@@ -38,6 +52,27 @@ export class StandardCalculator implements Calculator {
     getClimbingTime(): number {
         return this.climbingTime;
     }
+
+    getTotalClimbingTime(): number {
+        return this.totalClimbingTime;
+    }
+
+    getDescendingTime(): number {
+        return this.descendingTime;
+    }
+
+    getTotalDescendingTime(): number {
+        return this.totalDescendingTime;
+    }
+
+    getTotalTime(): number {
+        return this.totalTime;
+    }
+
+    getTotalRestStopTime(): number {
+        return this.totalRestStopTime;
+    }
+
     getTotalNumberOfLaps(): number {
         return Math.ceil(this.totalNumberOfLaps);
     }
@@ -58,14 +93,22 @@ export class StandardCalculator implements Calculator {
         return parseFloat(this.totalWatts.toFixed(2));
     }
 
-    updateData(climbingDistance: number, elevationGain: number, climbingSpeed: number, totalWeight: number): void {
+    updateData(climbingDistance: number, elevationGain: number, climbingSpeed: number, totalWeight: number, 
+        descendingSpeed: number, restStopTime: number,
+        totalNumbersOfRestStops: number): void {
         this.climbHeight = elevationGain;
         this.totalWeight = totalWeight;
         this.climbingSpeed = climbingSpeed;
 
         this.lapDistance = 2 * climbingDistance;
-        this.climbingTime = climbingDistance / climbingSpeed * 60 * 60;
         this.totalNumberOfLaps = Math.round(CalculationConstants.HeightOfMountEverest / elevationGain);
+
+        this.climbingTime = climbingDistance / climbingSpeed * 60 * 60;
+        this.totalClimbingTime = this.climbingTime * this.totalNumberOfLaps;
+        this.descendingTime = climbingDistance / descendingSpeed * 60 * 60;
+        this.totalDescendingTime = this.descendingTime * this.totalNumberOfLaps;
+        this.totalRestStopTime = restStopTime * totalNumbersOfRestStops;
+        this.totalTime = this.totalClimbingTime + this.totalDescendingTime + restStopTime;
         this.totalDistance = parseFloat((this.totalNumberOfLaps * this.lapDistance).toFixed(2));
 
         this.climbingWatts = this.calculateClimbingWatts(this.totalWeight, this.climbHeight, this.climbingTime);

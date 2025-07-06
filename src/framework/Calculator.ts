@@ -14,14 +14,29 @@ export interface Calculator {
     getClimbingTime(): number;
 
     /**
+     * @return Returns the total time spend climbing to complete an everest
+     */
+    getTotalClimbingTime(): number;
+
+    /**
      * @return Returns the time it takes to complete one descent (ss)
      */
     getDescendingTime(): number;
 
     /**
+     * @return Returns the total time spend descending to complete an everest
+     */
+    getTotalDescendingTime(): number;
+
+    /**
      * @return Returns the total time it takes to complete an everest (ss)
      */
     getTotalTime(): number;
+
+    /**
+     * @return Returns the total amount of time to rest (ss)
+     */
+    getTotalRestStopTime(): number;
 
     /**
      * @return Returns the total amount of laps required to complete an everest
@@ -62,7 +77,8 @@ export interface Calculator {
      * @param totalWeight Total weight of rider and equipment (kg)
      */
     updateData(climbingDistance: number, elevationGain: number, climbingSpeed: number,
-               totalWeight: number
+               totalWeight: number, descendingSpeed: number, restStopTime: number,
+               totalNumbersOfRestStops: number
     ): void;
 
     /**
