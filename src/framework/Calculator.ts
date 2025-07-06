@@ -14,6 +14,16 @@ export interface Calculator {
     getClimbingTime(): number;
 
     /**
+     * @return Returns the time it takes to complete one descent (ss)
+     */
+    getDescendingTime(): number;
+
+    /**
+     * @return Returns the total time it takes to complete an everest (ss)
+     */
+    getTotalTime(): number;
+
+    /**
      * @return Returns the total amount of laps required to complete an everest
      */
     getTotalNumberOfLaps(): number;
