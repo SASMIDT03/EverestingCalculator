@@ -21,6 +21,7 @@ const totalNumberOfRestStopInput: HTMLInputElement = document.querySelector("#to
 const totalWattsText: HTMLDivElement = document.querySelector("#totalWattsText")!;
 const totalDistanceText: HTMLDivElement = document.querySelector("#totalDistanceText")!;
 const totalLapsText: HTMLDivElement = document.querySelector("#totalLapsText")!;
+const totalTimeText: HTMLDivElement = document.querySelector("#totalTimeText")!;
 
 const calculatedWattsBox: HTMLDivElement = document.querySelector("#calculatedWattsBox")!;
 const expandedWattsCalculationBox: HTMLDivElement = document.querySelector("#expandedWattsCalculations")!;
@@ -55,9 +56,17 @@ restStopSlider.addEventListener("input", () => {
 });
 
 function formatTime(timeValue: number): string {
+    let timeString: string = "";
+    let seconds: string = "";
+    const hoursTmp: number = Math.floor(timeValue / (60 * 60));
+    if (hoursTmp !== 0) {
+        timeValue -= 60 * 60 * hoursTmp;
+        timeString = `${hoursTmp.toString().padStart(2, "0")}h:`
+    }
+    else { seconds = ":" + Math.round((timeValue % 60)).toString().padStart(2, "0") + "s"; }
     const minutes: string = Math.floor(timeValue / 60).toString().padStart(2, "0");
-    const seconds: string = (timeValue % 60).toString().padStart(2, "0");
-    return `${minutes}m:${seconds}s`;
+    
+    return timeString + `${minutes}m${seconds}`;
 }
 
 calculateButton.addEventListener("click", () => {
@@ -79,12 +88,14 @@ calculateButton.addEventListener("click", () => {
     updateWattsPopupCalculationText();
     updateDistancePopupContent();
     updateLapsPopupContent();
+    updateTimePopupContent();
 });
 
 function updateCalculationText() {
     totalWattsText.innerHTML = calculator.getTotalWatts().toString() + "w";
     totalDistanceText.innerHTML = calculator.getTotalDistance().toString() + "km";
     totalLapsText.innerHTML = calculator.getTotalNumberOfLaps().toString();
+    totalTimeText.innerHTML = formatTime(calculator.getTotalTime());
 }
 
 function updateWattsPopupCalculationText() {
@@ -118,6 +129,22 @@ function updateLapsPopupContent() {
     let totalLapsText: HTMLDivElement = document.querySelector("#totalLapsTextPop")!;
 
     totalLapsText.innerHTML = calculator.getTotalNumberOfLaps().toString();
+}
+
+function updateTimePopupContent() {
+    let climbingTime: HTMLDivElement = document.querySelector("#climbingTimeText")!;
+    let totalClimbingTime: HTMLDivElement = document.querySelector("#totalClimbingTimeText")!;
+    let descendingTime: HTMLDivElement = document.querySelector("#descendingTimeText")!;
+    let totalDescendingTime: HTMLDivElement = document.querySelector("#totalDescendingTimeText")!;
+    let totalRestStopTime: HTMLDivElement = document.querySelector("#restStopTimeText")!;
+    let totalTime: HTMLDivElement = document.querySelector("#totalTimePopupText")!;
+
+    climbingTime.innerHTML = formatTime(calculator.getClimbingTime());
+    totalClimbingTime.innerHTML = formatTime(calculator.getTotalClimbingTime());
+    descendingTime.innerHTML = formatTime(calculator.getDescendingTime());
+    totalDescendingTime.innerHTML = formatTime(calculator.getTotalDescendingTime());
+    totalRestStopTime.innerHTML = formatTime(calculator.getTotalRestStopTime());
+    totalTime.innerHTML = formatTime(calculator.getTotalTime());
 }
 
 calculatedWattsBox.addEventListener("click", () => { 
