@@ -72,6 +72,26 @@ input[type="range"]:focus {
     outline: none;
 }
 
+#restStopTime {
+    -webkit-appearance: none;
+    width: 80%;
+    height: 25px;
+    background: var(--grey);
+    outline: none;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+#restStopTime::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  background: var(--red);
+  cursor: pointer;
+}
+
 .entryTextDiv {
     font-size: 82%;
     font-weight: 1000;
@@ -87,10 +107,6 @@ input[type="range"]:focus {
     background-color: var(--white);
     transition: all var(--slowTransitionTime) ease;
     width: 64%;
-}
-
-.entryDiv:active {
-    box-shadow: 0px 4px 4px 0px var(--yellow);
 }
 
 .entryDiv:focus {
@@ -117,6 +133,7 @@ button {
 
 button:hover {
     box-shadow: 0px 4px 4px 0px var(--darkBlue);
+    cursor: pointer;
 }
 
 button:active {
