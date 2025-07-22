@@ -42,11 +42,16 @@ document.querySelectorAll<HTMLDivElement>(".entryDiv").forEach((entry) => {
 
     entry.addEventListener("focus", () => {
         inputField.focus();
-        entry.classList.toggle("entryDivFocus");
+        entry.classList.add("entryDivFocus");
     });
 
+    inputField.addEventListener("focus", () => {
+        entry.classList.add("entryDivFocus");
+    })
+
     inputField.addEventListener("blur", () => {
-        entry.classList.toggle("entryDivFocus");
+        console.log("Lost focus");
+        entry.classList.remove("entryDivFocus");
     });
 });
 
