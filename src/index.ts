@@ -24,7 +24,7 @@ const totalLapsText: HTMLDivElement = document.querySelector("#totalLapsText")!;
 const totalTimeText: HTMLDivElement = document.querySelector("#totalTimeText")!;
 
 const calculatedWattsBox: HTMLDivElement = document.querySelector("#calculatedWattsBox")!;
-const expandedWattsCalculationBox: HTMLDivElement = document.querySelector("#expandedWattsCalculations")!;
+const popupMainWindow: HTMLDivElement = document.querySelector("#popupMainWindow")!;
 const wattsPopupBox: HTMLDivElement = document.querySelector("#wattsPopupContent")!;
 
 const calculatedDistanceBox: HTMLDivElement = document.querySelector("#calulatedDistanceBox")!;
@@ -35,6 +35,9 @@ const lapsPopupBox: HTMLDivElement = document.querySelector("#lapsPopupContent")
 
 const calculatedTotalTimeBox: HTMLDivElement = document.querySelector("#calculatedTotalTimeBox")!;
 const timePopupBox: HTMLDivElement = document.querySelector("#timePopupContent")!;
+
+const settingsPopupBox: HTMLDivElement = document.querySelector("#settingsPopupContent")!;
+
 
 // Dynamic focus
 document.querySelectorAll<HTMLDivElement>(".entryDiv").forEach((entry) => {
@@ -153,36 +156,50 @@ function updateTimePopupContent() {
 }
 
 calculatedWattsBox.addEventListener("click", () => { 
-    expandedWattsCalculationBox.style.display = "flex";
+    popupMainWindow.style.display = "flex";
     wattsPopupBox.style.display = "flex";
+
+    wattsPopupBox.addEventListener("click", event => { event.stopPropagation(); });
 });
 
-wattsPopupBox.addEventListener("click", event => { event.stopPropagation(); });
-expandedWattsCalculationBox.addEventListener("click", () => { 
-    expandedWattsCalculationBox.style.display = "none";
+popupMainWindow.addEventListener("click", () => { 
+    popupMainWindow.style.display = "none";
     wattsPopupBox.style.display = "none";
     distancePopupBox.style.display = "none";
     lapsPopupBox.style.display = "none";
     timePopupBox.style.display = "none";
+    settingsPopupBox.style.display = "none";
 });
 
 calculatedDistanceBox.addEventListener("click", () => {
-    expandedWattsCalculationBox.style.display = "flex";
+    popupMainWindow.style.display = "flex";
     
     distancePopupBox.style.display = "flex";
     distancePopupBox.addEventListener("click", event => { event.stopPropagation(); });
 });
 
 calculatedLapsBox.addEventListener("click", () => {
-    expandedWattsCalculationBox.style.display = "flex";
+    popupMainWindow.style.display = "flex";
 
     lapsPopupBox.style.display = "flex";
     lapsPopupBox.addEventListener("click", event => { event.stopPropagation(); } );
 });
 
 calculatedTotalTimeBox.addEventListener("click", () => {
-    expandedWattsCalculationBox.style.display = "flex";
+    popupMainWindow.style.display = "flex";
 
     timePopupBox.style.display = "flex";
     timePopupBox.addEventListener("click", event => { event.stopPropagation(); });
-})
+});
+
+/*
+ *  ### SETTINGS ###
+ */
+const settingsIcon: HTMLImageElement = document.querySelector("#settingsIcon")!;
+
+settingsIcon.addEventListener("click", () => {
+    popupMainWindow.style.display = "flex";
+    settingsPopupBox.style.display = "flex";
+
+    settingsPopupBox.addEventListener("click", event => { event.stopPropagation(); });
+});
