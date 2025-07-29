@@ -1,5 +1,6 @@
 import { Calculator } from "./framework/Calculator";
-import { CalculationConstants } from "./CalculationConstants.js";
+import { CalculationsConstants } from "./framework/CalculationConstants";
+import { StandardCalculationConstants } from "./StandardCalculationConstants";
 
 export class StandardCalculator implements Calculator {
     private climbHeight: number;
@@ -22,6 +23,8 @@ export class StandardCalculator implements Calculator {
     private airResitanceWatts: number;
     private rollingResistanceWatts: number;
     private totalWatts: number;
+
+    private calculationConstants: CalculationsConstants = new StandardCalculationConstants();
     
     constructor() {
         this.climbHeight = 0;
@@ -101,7 +104,7 @@ export class StandardCalculator implements Calculator {
         this.climbingSpeed = climbingSpeed;
 
         this.lapDistance = 2 * climbingDistance;
-        this.totalNumberOfLaps = Math.round(CalculationConstants.HeightOfMountEverest / elevationGain);
+        this.totalNumberOfLaps = Math.round(this.calculationConstants.getHeightOfMountEverest() / elevationGain);
 
         this.climbingTime = climbingDistance / climbingSpeed * 60 * 60;
         this.totalClimbingTime = this.climbingTime * this.totalNumberOfLaps;
@@ -119,25 +122,26 @@ export class StandardCalculator implements Calculator {
     }
 
     calculateClimbingWatts(totalWeight: number, climbHeight: number, climbingTime: number): number {
-        return (totalWeight * CalculationConstants.LocalGravitationalConstant * climbHeight) / climbingTime;
+        return (totalWeight * this.calculationConstants.getLocalGravitationalConstant() * climbHeight) / climbingTime;
     }
 
     calculateAirResistanceWatts(climbingSpeed: number): number {
-        const airDensity = CalculationConstants.AirDensity;
-        const cda = CalculationConstants.CDA;
-        const frontalArea = CalculationConstants.FrontalArea;
+        const airDensity = this.calculationConstants.getAirDensity();
+        const cda = this.calculationConstants.getCDA();
+        const frontalArea = this.calculationConstants.getFrontalArea();
 
         return (1/2) * airDensity * cda * frontalArea * (climbingSpeed / 3.6)**3;
     }
 
     calculateRollingResistanceWatts(weight: number, climbingSpeed: number): number {
-        const rollingCoefficient = CalculationConstants.RollingCoefficient;
+        const rollingCoefficient = this.calculationConstants.getRollingCoefficient();
+        const localGravitationalConstant = this.calculationConstants.getLocalGravitationalConstant()
 
-        return weight * CalculationConstants.LocalGravitationalConstant * rollingCoefficient * (climbingSpeed / 3.6)
+        return weight * localGravitationalConstant * rollingCoefficient * (climbingSpeed / 3.6)
     }
 
     calculateTotalWatts(climbingWatts: number, airWatts: number, rollingWatts: number): number {
-        const driveTrainLoss = CalculationConstants.DriveTrainLoss;
+        const driveTrainLoss = this.calculationConstants.getDriveTrainLoss();
 
         let totalWatts: number = climbingWatts + airWatts + rollingWatts;
 
