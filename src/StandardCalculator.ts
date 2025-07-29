@@ -1,6 +1,6 @@
 import { Calculator } from "./framework/Calculator";
 import { CalculationsConstants } from "./framework/CalculationConstants";
-import { StandardCalculationConstants } from "./StandardCalculationConstants";
+import { StandardCalculationConstants } from "./StandardCalculationConstants.js";
 
 export class StandardCalculator implements Calculator {
     private climbHeight: number;
