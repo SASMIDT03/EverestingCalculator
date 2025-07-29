@@ -270,6 +270,10 @@ button:active {
     display: none;
 }
 
+#settingsPopupContent {
+    display: none;
+}
+
 #settingsIcon {
     width: 4vw;
     height: 4vw;
