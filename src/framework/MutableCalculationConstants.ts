@@ -1,4 +1,6 @@
-export interface MutableCalculationConstants {
+import { CalculationsConstants } from "./CalculationConstants";
+
+export interface MutableCalculationConstants extends CalculationsConstants {
     /*
     HeightOfMountEverest = 8849,
     LocalGravitationalConstant = 9.82, // Local for Denmark
