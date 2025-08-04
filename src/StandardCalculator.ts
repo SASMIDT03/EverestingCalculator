@@ -25,12 +25,8 @@ export class StandardCalculator implements Calculator {
     private totalWatts: number;
 
     private calculationConstants: CalculationsConstants = StandardCalculationConstants.getInstance();
-    private c1: CalculationsConstants = StandardCalculationConstants.getInstance();
     
     constructor() {
-
-        console.log(this.calculationConstants === this.c1);
-
         this.climbHeight = 0;
         this.totalWeight = 0;
         this.climbingSpeed = 0;
