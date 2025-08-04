@@ -3,6 +3,8 @@ import { MutableCalculationConstants } from "./framework/MutableCalculationConst
 
 export class StandardCalculationConstants implements CalculationsConstants, MutableCalculationConstants {
 
+    static #instance: StandardCalculationConstants;
+
     private heightOfMountEverest: number;
     private localGravitationalConstant: number;
     private airDensity: number;
@@ -11,7 +13,7 @@ export class StandardCalculationConstants implements CalculationsConstants, Muta
     private rollingCoefficient: number;
     private drivetrainLoss: number;
 
-    constructor() {
+    private constructor() {
         this.heightOfMountEverest = 8849;
         this.localGravitationalConstant = 9.82; // Local for Denmark
         this.airDensity = 1.22601; // Approx at 15 celcius
@@ -19,6 +21,12 @@ export class StandardCalculationConstants implements CalculationsConstants, Muta
         this.frontalArea = 0.5;
         this.rollingCoefficient = 0.005;
         this.drivetrainLoss = 0.03;
+    }
+
+    public static getInstance(): StandardCalculationConstants {
+        if (!StandardCalculationConstants.#instance) { StandardCalculationConstants.#instance = new StandardCalculationConstants(); }
+
+        return StandardCalculationConstants.#instance;
     }
 
     getHeightOfMountEverest(): number {
