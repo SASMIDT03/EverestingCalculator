@@ -8,12 +8,37 @@
 </head>
 <body>
     <div id="popupMainWindow">
+        <!-- ### SettingsPopup ### -->
         <div class="popupContent" id="settingsPopupContent">
             <div class="entryDiv" tabindex="0">
-                <div class="entryTextDiv" id="climbingDistanceText">Settings text</div>
-                <input type="number" id="climbingDistance" placeholder="km">
+                <div class="entryTextDiv">LocalGravitationalConstant</div>
+                <input type="number" id="climbingDistance">
             </div>
+            <div class="entryDiv" tabindex="0">
+                <div class="entryTextDiv">AirDensity</div>
+                <input type="number" id="climbingDistance">
+            </div>
+            <div class="entryDiv" tabindex="0">
+                <div class="entryTextDiv">CDA</div>
+                <input type="number" id="climbingDistance">
+            </div>
+            <div class="entryDiv" tabindex="0">
+                <div class="entryTextDiv">FrontalArea</div>
+                <input type="number" id="climbingDistance">
+            </div>
+            <div class="entryDiv" tabindex="0">
+                <div class="entryTextDiv">RollingCoefficient</div>
+                <input type="number" id="climbingDistance">
+            </div>
+            <div class="entryDiv" tabindex="0">
+                <div class="entryTextDiv">DrivetrainLoss</div>
+                <input type="number" id="climbingDistance">
+            </div>
+
+            <button type="button" id="saveSettingsButton">Save</button>
+
         </div>
+        <!-- ### CalculationPopups ### -->
         <div class="popupContent" id="wattsPopupContent">
             <div class="popupContentCalculatedData">
                 <div class="calculatedDataBox">
@@ -147,5 +172,6 @@
     </div>
 
     <script type="module" src="../dist/src/index.js"></script>
+    <script type="module" src="../dist/src/settingsHandler.js"></script>
 </body>
 </html>
